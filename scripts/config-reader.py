@@ -2,3 +2,8 @@
 # This scrip aims to interperate and provide a list of functions for other scripts to access config information, such as: 
 # A list of tickers, start dates, end dates, portfolio allocation (% or $), currency, etc.
 import json
+
+with open('../config.jsoon', 'r') as f:
+    config = json.load(f)
+
+print(data)
