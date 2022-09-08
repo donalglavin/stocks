@@ -2,3 +2,4 @@ requests
 numpy
 pandas
 json
+python-lsp-server[all]
