@@ -1,5 +1,6 @@
 requests
 numpy
 pandas
-json
+ibapi
+ib-insync
 python-lsp-server[all]
