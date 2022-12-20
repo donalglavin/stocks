@@ -3,4 +3,4 @@ numpy
 pandas
 ibapi
 ib-insync
-python-lsp-server[all]
+python-lsp-server
