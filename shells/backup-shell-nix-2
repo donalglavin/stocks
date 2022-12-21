@@ -1,0 +1,30 @@
+{ pkgs ? import <nixpkgs> {}}:
+let
+  mach-nix = import (builtins.fetchGit {
+    url = "https://github.com/DavHau/mach-nix";
+    ref = "refs/tags/3.5.0";
+  }) {};
+in
+let
+  # create a custom python environment
+  myPython = mach-nix.mkPython {
+    # specify the base version of python you with to use
+    python = "python3";
+    requirements = builtins.readFile ./requirements.txt;
+    # requirements = ''
+    #              requests
+    #              numpy
+    #              pandas
+    #              ibapi
+    #              ib-insync
+    #              python-lsp-server[all]
+    # '';
+  };
+in
+pkgs.mkShell {
+  buildInputs = [
+    # Now you can use your custom python environemt!
+    # This should also work for `buildInputs` and so on!
+    myPython
+  ];
+}

@@ -1,25 +1,27 @@
-{ pkgs ? import <nixpkgs> {}}:
+{pkgs ? import <nixpkgs> {} }:
+
+with pkgs;
 let
-  ibapi = pkgs.pythonPackages.buildPythonPackage rec {
-    name = "ibapi";
-    version = "1020.01";
-    src = pkgs.fetchurl{
-      url = "https://interactivebrokers.github.io/downloads/twsapi_macunix.${version}.zip";
+  ibapi = python39.pkgs.buildPythonPackage rec {
+    pname = "ibapi";
+    version = "9.81.1";
+
+    src = python39.pkgs.fetchPypi {
+      inherit pname version;
       sha256 = "";
     };
+
+    doCheck = false;
+
     meta = {
-      homepage = "https://interactivebrokers.github.io/#";
-      description = "Interactive Brokers Official API";
+      homepage = "https://pypi.org/project/ibapi/";
+      description = "Interactive Brokers Api";
     };
   };
+
 in
 pkgs.mkShell {
   buildInputs = [
-    (pkgs.python3.withPackages (ps: with ps; [ numpy pandas python-lsp-server ibapi requests]))
-    pkgs.emacs
+    (pkgs.python3.withPackages (ps: [ ps.numpy ps.pandas ps.python-lsp-server ibapi ps.requests]))
   ];
 }
-
-
-  # Documentation can be found here:
-  # https://interactivebrokers.github.io/tws-api/introduction.html

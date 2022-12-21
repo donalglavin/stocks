@@ -1,0 +1,22 @@
+{ pkgs ? import <nixpkgs> {}}:
+let
+  mach-nix = import (builtins.fetchGit {
+    url = "https://github.com/DavHau/mach-nix";
+    ref = "refs/tags/3.5.0";
+  }) {};
+in
+pkgs.mkShell {
+  buildInputs = [
+    mach-nix.mkpython {
+      python = "python310";
+      requirements = ''
+               requests
+               numpy
+               pandas
+               ibapi
+               ib-insync
+               python-lsp-server[all]
+  '';
+    }
+  ];
+}
