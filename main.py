@@ -13,12 +13,16 @@ import pandas as pd
 from ta.trend import ema_indicator
 from ta.volume import VolumeWeightedAveragePrice
 
+
 # function for rounding strike prices:
 def roundStrikePrice(x, base=5):
+    """Round strike price."""
     print("rounded value: ", base * round(x / base))
     return base * round(x / base)
 
+
 def VWAPFunction(dataframe, label="vwap", window=3, fillna=True):
+    """VWAP Function."""
     dataframe[label] = VolumeWeightedAveragePrice(
         high=dataframe["high"],
         low=dataframe["low"],
@@ -28,6 +32,7 @@ def VWAPFunction(dataframe, label="vwap", window=3, fillna=True):
         fillna=fillna,
     ).volume_weighted_average_price()
     return dataframe
+
 
 # read parameters from csv:
 dataframe = pd.read_csv("Yaz_Trading_Bot_Parameters.csv")
