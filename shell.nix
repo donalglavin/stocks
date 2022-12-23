@@ -28,6 +28,7 @@ pkgs.mkShell {
   buildInputs = [
     # (pkgs.python3.withPackages (ps: [ ps.numpy ps.pandas ps.python-lsp-server ibapi ps.requests]))
     my-python # Load the my-python environment into the shell.
-    # tws # Load the trader workstation into the environment (look at tws-gateway for easier functionality).
+    # pkgs.ib-tws # Load the trader workstation into the environment (look at tws-gateway for easier functionality).
+    # pkgs.ib-controller
   ];
 }
