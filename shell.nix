@@ -15,6 +15,9 @@ let
     # requirements = builtins.readFile ./requirements.txt;
     requirements = ''
                  requests
+                 scrapy
+                 scrapy-playwright
+                 pytest-playwright
                  numpy
                  pandas
                  ibapi
@@ -31,4 +34,7 @@ pkgs.mkShell {
     # pkgs.ib-tws # Load the trader workstation into the environment (look at tws-gateway for easier functionality).
     # pkgs.ib-controller
   ];
+  shellHook = ''
+            playwright install chromium
+            '';
 }
